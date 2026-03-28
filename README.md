@@ -1,12 +1,11 @@
-# ML Project
+# Tabular ML — Titanic Baseline
 
 ## Goal
-Practice ML project structure for internship applications.
+Build a clean, reproducible tabular ML baseline (train → eval → save model → predict) for internship applications.
 
-## How to run
-python3 src/main.py
+## Dataset
+Titanic dataset (public CSV mirror).
 
-## Structure
-- src/: code
-- docs/: notes
-- tests/: tests (coming)
+## Setup
+```bash
+python3 -m pip install -r requirements.txt
