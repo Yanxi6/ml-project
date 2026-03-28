@@ -2,3 +2,11 @@ __pycache__/
 *.pyc
 __pycache__/
 *.pyc
+# Python cache
+__pycache__/
+*.pyc
+src/__pycache__/
+
+# Model artifacts (avoid committing binaries)
+models/
+*.joblib
