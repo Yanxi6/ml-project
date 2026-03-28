@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
-from model import build_pipeline, split_xy
+from model import build_pipeline, split_xy, add_features
 
 DATA_PATH = Path("data/raw/titanic_train.csv")
 MODEL_PATH = Path("models/titanic_logreg.joblib")
@@ -13,10 +13,10 @@ MODEL_PATH = Path("models/titanic_logreg.joblib")
 
 def main():
     df = pd.read_csv(DATA_PATH)
+    df = add_features(df)
 
     X, y = split_xy(df)
 
-    # Keep it simple: random split
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
