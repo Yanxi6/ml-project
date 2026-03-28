@@ -2,7 +2,7 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.metrics import accuracy_score, classification_report
 
 from model import build_pipeline, split_xy, add_features
@@ -17,6 +17,13 @@ def main():
 
     X, y = split_xy(df)
 
+    # Cross-validation (more reliable estimate)
+    pipe_cv = build_pipeline()
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    scores = cross_val_score(pipe_cv, X, y, cv=cv, scoring="accuracy")
+    print(f"5-fold CV accuracy: mean={scores.mean():.4f} std={scores.std():.4f}")
+
+    # Keep a simple validation split for a readable report
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
